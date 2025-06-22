@@ -1,0 +1,17 @@
+# Binaries
+*.exe
+*.out
+*.o
+
+# Go build
+bin/
+vendor/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Docker
+*.env

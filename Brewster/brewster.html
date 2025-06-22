@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brewster ☕ — The Coffee Commander</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>☕ Brewster: The Coffee Commander</h1>
+  <p>Place your order and Brewster will make it happen.</p>
+
+  <form id="coffeeForm">
+    <input type="text" id="customerName" placeholder="Your Name" required />
+    <select id="coffeeType">
+      <option value="Cold Brew">Cold Brew</option>
+      <option value="Latte">Latte</option>
+      <option value="Espresso">Espresso</option>
+      <option value="Americano">Americano</option>
+    </select>
+    <br>
+    <button type="submit">Order Now</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    const form = document.getElementById('coffeeForm');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('customerName').value;
+      const coffee = document.getElementById('coffeeType').value;
+
+      const payload = {
+        customer_name: name,
+        coffee_type: coffee
+      };
+
+      try {
+        const res = await fetch('http://localhost:3000/order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          result.className = 'success';
+          result.textContent = data.msg;
+        } else {
+          result.className = 'error';
+          result.textContent = data.error || 'Something went wrong.';
+        }
+      } catch (err) {
+        result.className = 'error';
+        result.textContent = '❌ Cannot connect to Brewster.';
+      }
+    });
+  </script>
+</body>
+</html>

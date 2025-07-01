@@ -1,8 +1,8 @@
-☕ Brewster: The Coffee Commander (Kafka + Go)
+Brewster: The Coffee Commander (Kafka + Go)
 
 This is a fun microservice project that simulates a coffee ordering system using Kafka, Go, and Docker. It's designed to help you learn how event-driven architecture works by connecting a Producer (order form) with a Consumer (coffee maker) through a Kafka message queue.
 
-💡 What You'll Learn
+What You'll Learn
 
 Kafka concepts: topics, producers, consumers
 
@@ -12,7 +12,7 @@ How to use Docker Compose to spin up Kafka + UI
 
 Handling CORS and JSON APIs in Go
 
-🧵 Tech Stack
+Tech Stack
 
 Go (Producer & Worker)
 
@@ -22,19 +22,8 @@ Kafka UI for visualizing messages
 
 Postman / curl or HTML form for testing
 
-📂 Project Structure
 
-coffee/
-├── Producer/              # HTTP server that sends orders to Kafka
-│   └── main.go
-├── Worker/                # Kafka consumer that prints out orders
-│   └── main.go
-├── brewster.html          # (Optional) Fun browser UI to send orders
-├── docker-compose.yaml    # Kafka, Zookeeper, Kafka UI
-├── .gitignore
-└── README.md
-
-🔧 Setup & Run
+Setup & Run
 
 1. Start Kafka
 
@@ -60,7 +49,7 @@ go run main.go
 
 The worker listens for new messages on the coffee_orders topic and logs them.
 
-📢 Send an Order
+Send an Order
 
 Option 1: Postman or curl
 
@@ -79,7 +68,7 @@ Then open:
 
 http://localhost:8081/brewster.html
 
-📊 Kafka UI
+Kafka UI
 
 Visit:
 
@@ -89,15 +78,15 @@ View topics, partitions, consumers
 
 Inspect the coffee_orders topic and messages
 
-🔍 Example Output
+Example Output
 
 From Worker Terminal
 
 ️ Coffee Order Consumer Started
-📦 Received order #1 | Topic(coffee_orders) | Message({"customer_name":"Robbie","coffee_type":"Cold Brew"})
-🥜 Brewing Coffee for order: Robbie
+Received order #1 | Topic(coffee_orders) | Message({"customer_name":"Robbie","coffee_type":"Cold Brew"})
+Brewing Coffee for order: Robbie
 
-🚩 Dev Notes
+Dev Notes
 
 CORS enabled in Producer for HTML testing
 
@@ -105,7 +94,7 @@ Messages are not persisted after restart (in-memory only)
 
 docker compose down -v will reset Kafka topics
 
-🎉 Future Ideas
+Future Ideas
 
 Store orders in a DB (e.g., Postgres)
 
@@ -113,6 +102,6 @@ Add a delivery service as a second consumer
 
 Deploy to cloud with Docker Compose or K8s
 
-🌐 Author
+Author
 
 Made with Go, Kafka, and Coffee by 404Yeti ☕
